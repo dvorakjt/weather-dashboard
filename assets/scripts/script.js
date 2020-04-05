@@ -1,5 +1,5 @@
 function searchCity(city) {
-    var myCityUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=4e1d66a53d3f4005204fa8c8a3971736";
+    var myCityUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=4e1d66a53d3f4005204fa8c8a3971736";
     $.ajax({
         url: myCityUrl,
         method: "GET"
@@ -10,7 +10,7 @@ function searchCity(city) {
         var windSpeed = response.wind.speed;
         var lat = response.coord.lat;
         var lon = response.coord.lon;
-        var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=4e1d66a53d3f4005204fa8c8a3971736&lat=" + lat + "&lon=" + lon;
+        var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=4e1d66a53d3f4005204fa8c8a3971736&lat=" + lat + "&lon=" + lon;
         $.ajax({
             url: uvUrl,
             method: "GET"
