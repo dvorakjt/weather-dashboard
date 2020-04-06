@@ -8,8 +8,34 @@
 
 .night {
     background-color: black;
+    color: white;
 }
 
 .evening {
     background-image: linear-gradient(purple, orange);
+    color: white;
+}
+
+img {
+    height: 40px;
+    width: 40px;
+}
+
+
+#nightBg {
+    background-image: url("night-background.jpg");
+}
+
+#dayBg {
+    background-image: url("day-bg.jpg");
+}
+
+#evenBg {
+    background-image: url("even-bg.jpg");
+}
+.bg-img {
+    height: 700px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
 }
