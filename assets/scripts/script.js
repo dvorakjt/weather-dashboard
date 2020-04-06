@@ -117,15 +117,17 @@ function searchForecast(city) {
 // update today's date and the dates for the forecast when the page loads
 
 var cities = JSON.parse(localStorage.getItem("cities"));
-updateDay();
-if (cities[0]) {
-    mostRecCity = cities[cities.length - 1];
-    searchCity(mostRecCity);
-    searchForecast(mostRecCity);
-    $("select").prop("disabled", false);
+if (cities) {
+    if (cities[0]) {
+        mostRecCity = cities[cities.length - 1];
+        searchCity(mostRecCity);
+        searchForecast(mostRecCity);
+        $("select").prop("disabled", false);
+    }
 }
 else {
     cities = [];
+    updateDay();
 }
 
 renderCities(cities);
