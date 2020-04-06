@@ -34,7 +34,7 @@ img {
     background-image: url("even-bg.jpg");
 }
 .bg-img {
-    height: 700px;
+    height: 650px;
     width: 100%;
     background-size: cover;
     background-position: center;

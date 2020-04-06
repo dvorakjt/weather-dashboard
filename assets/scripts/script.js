@@ -1,5 +1,6 @@
-var mostRecCity;
-var days = [];
+//Declare global variables
+var mostRecCity; //most recent city searched for
+var days = []; //the array that holds the day object for the 5-day forecast
 for (let i = 1; i <= 5; i++) { //create an object for each day in the forecast
     days[i] = {
         date: "",
@@ -10,27 +11,30 @@ for (let i = 1; i <= 5; i++) { //create an object for each day in the forecast
         icon: "02d"
     }
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////functions///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updateDay(offset) { //update today's date and the dates for the 5 day forecast, will be called when a new city is selected as well.
-    if (cities[0]) {
-        var today = moment().utc().utcOffset(offset).format("dddd, MMMM Do YYYY");
+    if (cities[0]) { //if there is at least one element in cities
+        var today = moment().utc().utcOffset(offset).format("dddd, MMMM Do YYYY"); //use the offset value supplied to Update day to determine the time in that timezone
         var thisHour = moment().utc().utcOffset(offset).hour();
-        if (thisHour < 5 || thisHour >= 21) {
+        if (thisHour < 5 || thisHour >= 21) { //if it is before 5 am or after 9pm use the night stylings
             $("#cityCard").attr("class", "card p-4 night"); //make the background night
             $(".bg-img").attr("id", "nightBg");
         }
-        else if (thisHour > 6 && thisHour < 17) {
+        else if (thisHour > 6 && thisHour < 17) { //if it is after 6am AND before 5pm use the day stylings
             $("#cityCard").attr("class", "card p-4");
             $(".bg-img").attr("id", "dayBg");
         }
-        else {
+        else { //otherwise, use the evening/early morning stylings
             $("#cityCard").attr("class", "card p-4 evening");
             $(".bg-img").attr("id", "evenBg");
         }
-        $("#date").text(today);
-        for (let i = 1; i <= 5; i++) {
-            var id = "#d" + i + "date";
-            var id2 = "#d" + i;
+        $("#date").text(today); //set the date at the top of the screen to today's date
+        for (let i = 1; i <= 5; i++) { //set each day in the forecast to a day later than today
+            var id = "#d" + i + "date"; //creates an id based on i to assign the date's text to
+            var id2 = "#d" + i; //creates an id based on i to set the value of the select box
             days[i].date = moment().utc().utcOffset(offset).add(i, 'days').format('ddd MMMM Do');
             $(id).text(days[i].date);
             days[i].time = "06:00:00";
@@ -39,7 +43,7 @@ function updateDay(offset) { //update today's date and the dates for the 5 day f
             $(id2).parent().attr("class", "card m-2 p-2 text-white evening");
         }
     }
-    else {
+    else { //if there is not at least one element in cities, do the same things but don't use the utc offset
         var today = moment().format("dddd, MMMM Do YYYY");
         var thisHour = moment().hour();
         if (thisHour < 5 || thisHour >= 21) {
@@ -65,8 +69,9 @@ function updateDay(offset) { //update today's date and the dates for the 5 day f
     }
 }
 function searchCity(city) { //search for a city
+    //construct a url using the supplied city
     var myCityUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=4e1d66a53d3f4005204fa8c8a3971736";
-    $.ajax({
+    $.ajax({ //make an ajax call to get that cities info including latitute and longitude to use in the next ajax call
         url: myCityUrl,
         method: "GET"
     }).then(function (response) {
@@ -84,7 +89,7 @@ function searchCity(city) { //search for a city
             method: "GET"
         }).then(function (response) {
             var uv = response.value;
-            $("#icon0").attr("src", "http://openweathermap.org/img/wn/" + icon + ".png");
+            $("#icon0").attr("src", "https://openweathermap.org/img/wn/" + icon + ".png");
             $("#temperature").text("Temperature: " + temperature + "F");
             $("#humidity").text("Humidity: " + humidity + "%");
             $("#wind-speed").text("Wind-speed: " + windSpeed + " MPH");
@@ -111,7 +116,7 @@ function renderCities(array) { //add buttons for each city
 }
 
 function searchForecast(city) {
-    var myForecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial" + "&appid=4e1d66a53d3f4005204fa8c8a3971736";
+    var myForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial" + "&appid=4e1d66a53d3f4005204fa8c8a3971736";
     $.ajax({
         url: myForecastUrl,
         method: "GET"
@@ -124,10 +129,10 @@ function searchForecast(city) {
                     days[i].humidity = (forecastList[j].main.humidity);
                     days[i].icon = (forecastList[j].weather[0].icon).slice(0, 2);
                     if (days[i].time === "21:00:00") {
-                        $("#icon" + i).attr("src", "http://openweathermap.org/img/wn/" + days[i].icon + "n.png");
+                        $("#icon" + i).attr("src", "https://openweathermap.org/img/wn/" + days[i].icon + "n.png");
                     }
                     else {
-                        $("#icon" + i).attr("src", "http://openweathermap.org/img/wn/" + days[i].icon + "d.png");
+                        $("#icon" + i).attr("src", "https://openweathermap.org/img/wn/" + days[i].icon + "d.png");
                     }
                     $("#d" + i + "temp").text(days[i].temperature + "F");
                     $("#d" + i + "hum").text(days[i].humidity + "%");
@@ -138,8 +143,8 @@ function searchForecast(city) {
 }
 
 ///////////////////////////////////////////////////////////////Initialize the page///////////////////////////////////////////////////////////////
-// update today's date and the dates for the forecast when the page loads
 
+// update today's date and the dates for the forecast when the page loads
 var cities = JSON.parse(localStorage.getItem("cities"));
 if (cities) {
     if (cities[0]) {
