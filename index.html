@@ -17,7 +17,16 @@
 <body>
     <nav class="navbar-expand-lg navbar-dark bg-dark">
         <div class="container" style="text-align: center;">
-            <h1 class="navbar-brand">Weather Dashboard</h1>
+            <div class="row">
+                <div class="col-md">
+                    <h1 class="navbar-brand">Weather Dashboard</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    <h6 class="navbar-text" id="date"></h6>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -42,13 +51,18 @@
                         </div>
                     </div>
                     <section id="citiesSection"></section>
+                    <div class="row">
+                        <div class=col-md>
+                            <buttton class="btn btn-danger mt-5" id="clearBtn">Clear Searches</buttton>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-8 mt-2">
                 <div class="card p-4">
                     <div class="row">
                         <div class="col-md">
-                            <h3 class="card-title" id="currentCity">City Name Goes Here</h3>
+                            <h3 class="card-title" id="currentCity">←←←Find Your City</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -74,43 +88,83 @@
                 </div>
                 <div class="row" id="forecastRow">
                     <div class="col-md=2">
-                        <div class="card ml-3 mt-2 mb-2 mr-2 p-2 bg-primary text-white">
-                            <h6 class="card-title">day</h6>
+                        <div class="card m-2 p-2 bg-primary text-white">
+                            <h6 class="card-title" id="d1date"></h6>
                             <i class="fas fa-sun"></i>
-                            <p class="card-text">Temperature:</p>
-                            <p class="card-text">Humidity:</p>
+                            <p class="card-text" id="d1temp">Temperature</p>
+                            <p class="card-text" id="d1hum">Humidity</p>
+                            <select class="form-control" disabled="disabled" id="d1">
+                                <option>6:00AM</option>
+                                <option>9:00AM</option>
+                                <option>12:00PM</option>
+                                <option>3:00PM</option>
+                                <option>6:00PM</option>
+                                <option>9:00PM</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md=2">
                         <div class="card m-2 p-2 bg-primary text-white">
-                            <h6 class="card-title">day</h6>
+                            <h6 class="card-title" id="d2date"></h6>
                             <i class="fas fa-sun"></i>
-                            <p class="card-text">Temperature:</p>
-                            <p class="card-text">Humidity:</p>
+                            <p class="card-text" id="d2temp">Temperature</p>
+                            <p class="card-text" id="d2hum">Humidity</p>
+                            <select class="form-control" disabled="disabled" id="d2">
+                                <option>6:00AM</option>
+                                <option>9:00AM</option>
+                                <option>12:00PM</option>
+                                <option>3:00PM</option>
+                                <option>6:00PM</option>
+                                <option>9:00PM</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md=2">
                         <div class="card m-2 p-2 bg-primary text-white">
-                            <h6 class="card-title">day</h6>
+                            <h6 class="card-title" id="d3date"></h6>
                             <i class="fas fa-sun"></i>
-                            <p class="card-text">Temperature:</p>
-                            <p class="card-text">Humidity:</p>
+                            <p class="card-text" id="d3temp">Temperature</p>
+                            <p class="card-text" id="d3hum">Humidity</p>
+                            <select class="form-control" disabled="disabled" id="d3">
+                                <option>6:00AM</option>
+                                <option>9:00AM</option>
+                                <option>12:00PM</option>
+                                <option>3:00PM</option>
+                                <option>6:00PM</option>
+                                <option>9:00PM</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md=2">
                         <div class="card m-2 p-2 bg-primary text-white">
-                            <h6 class="card-title">day</h6>
+                            <h6 class="card-title" id="d4date"></h6>
                             <i class="fas fa-sun"></i>
-                            <p class="card-text">Temperature:</p>
-                            <p class="card-text">Humidity:</p>
+                            <p class="card-text" id="d4temp">Temperature</p>
+                            <p class="card-text" id="d4hum">Humidity</p>
+                            <select class="form-control" disabled="disabled" id="d4">
+                                <option>6:00AM</option>
+                                <option>9:00AM</option>
+                                <option>12:00PM</option>
+                                <option>3:00PM</option>
+                                <option>6:00PM</option>
+                                <option>9:00PM</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md=2">
                         <div class="card m-2 p-2 bg-primary text-white">
-                            <h6 class="card-title">day</h6>
+                            <h6 class="card-title" id="d5date"></h6>
                             <i class="fas fa-sun"></i>
-                            <p class="card-text">Temperature:</p>
-                            <p class="card-text">Humidity:</p>
+                            <p class="card-text" id="d5temp">Temperature</p>
+                            <p class="card-text" id="d5hum">Humidity</p>
+                            <select class="form-control" disabled="disabled" id="d5">
+                                <option>6:00AM</option>
+                                <option>9:00AM</option>
+                                <option>12:00PM</option>
+                                <option>3:00PM</option>
+                                <option>6:00PM</option>
+                                <option>9:00PM</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -129,6 +183,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone.min.js"></script>
     <script src="assets/scripts/script.js"></script>
 </body>
 

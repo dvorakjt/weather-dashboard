@@ -5,3 +5,11 @@
 .navbar-brand {
     font-size: 40px;
 }
+
+.night {
+    background-color: black;
+}
+
+.evening {
+    background-image: linear-gradient(purple, orange);
+}
