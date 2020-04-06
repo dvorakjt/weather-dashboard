@@ -117,6 +117,7 @@ $(document).ready(function () {
     }
 
     function searchForecast(city) {
+        console.log(city);
         var myForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial" + "&appid=4e1d66a53d3f4005204fa8c8a3971736";
         $.ajax({
             url: myForecastUrl,
@@ -151,6 +152,7 @@ $(document).ready(function () {
         if (cities[0]) {
             mostRecCity = cities[cities.length - 1];
             searchCity(mostRecCity);
+            console.log(mostRecCity);
             searchForecast(mostRecCity);
             $("select").prop("disabled", false);
         }
