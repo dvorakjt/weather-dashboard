@@ -36,3 +36,5 @@ Before buttons are added, a for loop combs the cities array and deletes any pre-
 		}
 	}
 	cities.push(myCity);
+
+Finally, a clear button empties the cities section, and resets the cities array to [], saving this value to localStorage.
